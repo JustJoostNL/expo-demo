@@ -1,31 +1,22 @@
-import { useEvent } from "expo";
-import { useVideoPlayer, VideoView } from "expo-video";
+import { useEffect, useState } from "react";
+import { Text, View } from "react-native";
+import * as Notifications from "expo-notifications";
 
-const hlsPlaylistUrl =
-  "https://5b44cf20b0388.streamlock.net:8443/vod/smil:hls-maudios-prod.smil/playlist.m3u8";
+export default function Index() {
+  const [data, setData] = useState<string | undefined>(undefined);
 
-const mp4VideoUrl = "https://mirror.selfnet.de/CCC/congress/2019/h264-hd/36c3-11235-eng-deu-fra-36C3_Infrastructure_Review_hd.mp4";
-
-export default function Video() {
-  const player = useVideoPlayer(
-    {
-      uri: hlsPlaylistUrl,
-    },
-    (player) => {
-      player.play();
-      player.allowsExternalPlayback = true;
-      player.staysActiveInBackground = true;
-    }
-  );
-
-  const data = useEvent(player, "availableAudioTracksChange");
-  console.log("availableAudioTracksChange", data);
+  useEffect(() => {
+    (async () => {
+      console.log("getting token");
+      const data = await Notifications.getExpoPushTokenAsync();
+      console.log("this log never shows because the function does not resolve");
+      setData(data.data);
+    })();
+  }, []);
 
   return (
-    <VideoView
-      allowsPictureInPicture
-      player={player}
-      style={{ width: "100%", height: "100%" }}
-    />
+    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+      <Text style={{ color: "red" }}>{data ?? "no data"}</Text>
+    </View>
   );
 }
