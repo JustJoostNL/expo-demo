@@ -8,7 +8,7 @@ export default function Index() {
   useEffect(() => {
     (async () => {
       console.log("getting token");
-      const data = await Notifications.getExpoPushTokenAsync();
+      const data = await Notifications.getDevicePushTokenAsync();
       console.log("this log never shows because the function does not resolve");
       setData(data.data);
     })();
