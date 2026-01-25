@@ -11,6 +11,7 @@ export default function Root() {
     <ThemeProvider value={DarkTheme}>
       <Stack>
         <Stack.Screen name="index" />
+        <Stack.Screen name="second" />
       </Stack>
     </ThemeProvider>
   );

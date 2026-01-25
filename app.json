@@ -7,7 +7,6 @@
     "icon": "./assets/icon.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
-    "newArchEnabled": true,
     "splash": {
       "image": "./assets/icon.png",
       "resizeMode": "contain",
@@ -22,9 +21,6 @@
       "expo-video",
       "expo-notifications",
       "expo-web-browser"
-    ],
-    "experiments": {
-      "typedRoutes": true
-    }
+    ]
   }
 }
